@@ -3,7 +3,7 @@ import { Pokebowl, StatusMessage, User } from "@/types";
 import classNames from "classnames";
 import router from "next/router";
 import { FormEvent, useState } from "react";
-
+import styles from '@/styles/Bestellingen.module.css';
 type Props = {
     user: User;
     pokebowls: Array<Pokebowl>;
@@ -67,48 +67,76 @@ const BestellingAanmaken: React.FC<Props> = ({ user: user, pokebowls: pokebowls 
 
 
     };
-
+    
     return (
         <>
-            <div className="addForms">
-                {statusMessages && (
-                    <div className="status">
-                        {statusMessages.map(({ message, type }, index) => (
-                            <p key={index} className={classNames({
-                                "error-field": type === "error",
-                                "ok-field": type === "success",
-                            })}>
-                                {message}
-                            </p>
-                        ))}
-                    </div>
-                )}
-                <form onSubmit={handleSubmit}>
-                    <p>{user.gebruikersnaam}</p>
-                    <label>Pokebowls</label>
-                    <table>
-                        {pokebowls && pokebowls.map((pokebowl) => (
-                            <tr key={pokebowl.id}>
-                                <td>{pokebowl.naam}</td>
-                                <td><button type="button" value={pokebowl.id} onClick={handlePokebowls}>Toevoegen</button></td>
+            {statusMessages.length > 0 && (
+                <div className={styles.statusMessages}>
+                    {statusMessages.map(({ message, type }, index) => (
+                        <p 
+                            key={index} 
+                            className={classNames(styles.statusMessage, {
+                                [styles.errorField]: type === "error",
+                                [styles.successField]: type === "success",
+                            })}
+                        >
+                            {message}
+                        </p>
+                    ))}
+                </div>
+            )}
+            <form onSubmit={handleSubmit} className={styles.form}>
+                <p className={styles.userName}>{user.gebruikersnaam}</p>
+                <div className={styles.formGroup}>
+                    <label htmlFor="pokebowls">Pokebowls</label>
+                    <table className={styles.table}>
+                        <thead>
+                            <tr>
+                                <th>Naam</th>
+                                <th>Actie</th>
                             </tr>
-                        ))}
+                        </thead>
+                        <tbody>
+                            {pokebowls.map((pokebowl) => (
+                                <tr key={pokebowl.id}>
+                                    <td>{pokebowl.naam}</td>
+                                    <td>
+                                        <button 
+                                            type="button" 
+                                            value={pokebowl.id} 
+                                            onClick={handlePokebowls}
+                                            className={styles.addButton}
+                                        >
+                                            Toevoegen
+                                        </button>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
                     </table>
-                    <p>Totaal prijs: {totaalPrijs}</p>
-                    <label>Bestelling:</label>
-                    <table>
-                        {selectedPokebowls && selectedPokebowls.map((pokebowl) => (
-                            <tr key={pokebowl.id}>
-                                <td>{pokebowl.naam}</td>
-                            </tr>
-                        ))}
+                </div>
+                <p className={styles.totalPrice}>Totaal prijs: {totaalPrijs?.toFixed(2) || 0}</p>
+                <div className={styles.formGroup}>
+                    <label htmlFor="selectedPokebowls">Bestelling:</label>
+                    <table className={styles.table}>
+                        <tbody>
+                            {selectedPokebowls && selectedPokebowls.map((pokebowl) => (
+                                <tr key={pokebowl.id}>
+                                    <td>{pokebowl.naam}</td>
+                                </tr>
+                            ))}
+                        </tbody>
                     </table>
-                    <input type="submit" value="Bestelling plaatsen" />
-                </form>
-            </div>
+                </div>
+                <input 
+                    type="submit" 
+                    value="Bestelling plaatsen" 
+                    className={styles.submitButton} 
+                />
+            </form>
         </>
-    );
-}
+    ); 
+};
 
 
 export default BestellingAanmaken;

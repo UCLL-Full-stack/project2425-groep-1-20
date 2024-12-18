@@ -8,6 +8,7 @@ import BestellingInfo from '@/components/bestellingen/BestellingInfo';
 import useSWR from 'swr';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import styles from '@/styles/Bestellingen.module.css';
 
 const BestellingId: React.FC = () => {
     const router = useRouter();
@@ -35,9 +36,9 @@ const BestellingId: React.FC = () => {
                 <title>Pokebowl info </title>
             </Head>
             <Header />
-            <main>
-                <h1>Bestelling</h1>
-                <section>
+            <main className={styles.main}>
+                <h1 className={styles.title}>Bestelling</h1>
+                <section className={styles.section}>
                     {error && <p className="error-field">{error}</p>}
                     {isLoading && <p>Loading bestelling info...</p>}
                     {bestellingId && <BestellingInfo bestelling={data?.bestelling} />}

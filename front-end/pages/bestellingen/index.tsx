@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import useSWR, { mutate } from "swr";
 import useInterval from "use-interval";
 import { useTranslation } from 'next-i18next';
+import styles from '@/styles/Bestellingen.module.css';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 const Bestellingen: React.FC = () => {
@@ -48,17 +49,17 @@ const Bestellingen: React.FC = () => {
                 <link rel="icon" href="assets/logo.png" />
             </Head>
             <Header />
-            <main>
-                <h1>Bestellingen</h1>
-                <p>Lijst van alle bestellingen</p>
-                <section>
+            <main className={styles.main}>
+                <h1 className={styles.title}>Bestellingen</h1>
+                <p className={styles.description}>Lijst van alle bestellingen</p>
+                <section className={styles.section}>
                     {error && <p className="error-field">{error}</p>}
                     {isLoading && <p>Loading...</p>}
                     {data && (
                         <BestellingenOverzicht bestellingen={data.bestellingen} selectBestelling={setSelectedBestelling} />
                     )}
+                    {!error && <button className={styles.createButton} onClick={() => { router.push(`/bestellingen/create-bestelling`); }}>Create new bestelling</button>}
                 </section>
-                {!error && <button onClick={() => { router.push(`/bestellingen/create-bestelling`); }}>Create new bestelling</button>}
             </main>
         </>
     );

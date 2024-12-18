@@ -8,6 +8,7 @@ import useSWR, { mutate } from "swr";
 import useInterval from "use-interval";
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import styles from '@/styles/Users.module.css';
 
 const Users: React.FC = () => {
     const { t } = useTranslation();
@@ -43,10 +44,10 @@ const Users: React.FC = () => {
                 <link rel="icon" href="assets/logo.png" />
             </Head>
             <Header />
-            <main>
-                <h1>Users</h1>
-                <p>Lijst van alle gebruikers</p>
-                <section>
+            <main className={styles.main}>
+                <h1 className={styles.title}>Users</h1>
+                <p className={styles.description}>Lijst van alle gebruikers</p>
+                <section className={styles.section}>
                     {error && <p className="error-field">{error}</p>}
                     {isLoading && <p className="text-green-800">Loading...</p>}
                     {data && (

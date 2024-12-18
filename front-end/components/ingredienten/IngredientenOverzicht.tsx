@@ -1,5 +1,7 @@
 import { Ingredient } from "@/types"
 import router from "next/router";
+import styles from '@/styles/Ingredienten.module.css';
+
 
 type Props = {
     ingredienten: Array<Ingredient>;
@@ -10,7 +12,7 @@ const IngredientenOverzicht: React.FC<Props> = ({ ingredienten, selectIngredient
     return (
         <>
             {ingredienten && (
-                <table>
+                <table className={styles.table}>
                     <thead>
                         <tr>
                             <th>Id</th>

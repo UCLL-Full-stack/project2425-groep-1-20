@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import useSWR from "swr";
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import styles from '@/styles/Bestellingen.module.css';
 
 const createNewBestelling: React.FC = () => {
     const [loggedInUser, setLoggedInUser] = useState<User | null>(null);
@@ -51,9 +52,9 @@ const createNewBestelling: React.FC = () => {
                 <link rel="icon" href="assets/logo.png" />
             </Head>
             <Header />
-            <main>
-                <h1>Bestelling</h1>
-                <section>
+            <main className={styles.main}>
+                <h1 className={styles.title}>Bestelling</h1>
+                <section className={styles.section}>
                     {error && <p className="error-field">{error.message}</p>}
                     {isLoading && <p>Loading...</p>}
                     {data?.user && data.pokebowl &&

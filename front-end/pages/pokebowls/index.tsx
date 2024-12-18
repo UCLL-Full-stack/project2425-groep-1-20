@@ -9,7 +9,7 @@ import useSWR, { mutate } from "swr";
 import useInterval from "use-interval";
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-
+import styles from '@/styles/Pokebowls.module.css';
 
 const Pokebowls: React.FC = () => {
     const [error, setError] = useState<String | null>(null);
@@ -50,17 +50,17 @@ const Pokebowls: React.FC = () => {
                 <link rel="icon" href="assets/logo.png" />
             </Head>
             <Header />
-            <main>
-                <h1>Pokebowls</h1>
-                <p>Lijst van alle pokebowls</p>
-                <section>
+            <main className={styles.main}>
+                <h1 className={styles.title}>Pokebowls</h1>
+                <p className={styles.description}>Lijst van alle pokebowls</p>
+                <section className={styles.description}>
                     {error && <div className="error-field">{error}</div>}
                     {isLoading && <p className="text-green-800">Loading...</p>}
                     {data && (
                         <PokebowlOverzicht pokebowls={data.pokebowls} selectPokebowl={setSelectedPokebowl} />
                     )}
                 </section>
-                {!error && <button onClick={() => { router.push(`/pokebowls/add-pokebowl`); }}>Create new pokebowl</button>}
+                {!error && <button className={styles.createButton} onClick={() => { router.push(`/pokebowls/add-pokebowl`); }}>Create new pokebowl</button>}
             </main>
         </>
     );

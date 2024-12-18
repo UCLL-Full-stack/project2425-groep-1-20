@@ -3,6 +3,8 @@ import { Ingredient, StatusMessage } from '@/types';
 import IngredientenService from '@/services/IngredientService';
 import router from 'next/router';
 import classNames from 'classnames';
+import styles from '@/styles/Ingredienten.module.css';
+
 
 type Props = {
     ingredient: Ingredient | null;
@@ -68,7 +70,7 @@ const IngredientInfo: React.FC<Props> = ({ ingredient }: Props) => {
                 </div>
             )}
             {ingredient && (
-                <ul>
+                <ul className={styles.ingredientInfo}>
                     <li>ID: {ingredient.id}</li>
                     <li>Naam: {ingredient.naam}</li>
                     <li>Type: {ingredient.type}</li>

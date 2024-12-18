@@ -3,7 +3,7 @@ import LoginForm from "@/components/users/LoginForm";
 import Head from "next/head";
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-
+import TestDataOverzicht from "@/components/users/TestDataOverzicht";
 
 const Login: React.FC = () => {
     const { t } = useTranslation();
@@ -20,6 +20,9 @@ const Login: React.FC = () => {
             <main>
                 <section className="p-6 min-h-screen flex flex-col items-center">
                     <LoginForm />
+                </section>
+                <section className="mt-8 w-full flex flex-col items-center">
+                    <TestDataOverzicht />
                 </section>
             </main>
         </>

@@ -3,6 +3,7 @@ import AddIngredient from "@/components/ingredienten/AddIngredient";
 import Head from "next/head";
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import styles from '@/styles/Ingredienten.module.css';
 
 const AddNewIngredient: React.FC = () => {
     const { t } = useTranslation();
@@ -16,9 +17,9 @@ const AddNewIngredient: React.FC = () => {
                 <link rel="icon" href="assets/logo.png" />
             </Head>
             <Header />
-            <main>
-                <h1>New ingredient</h1>
-                <section>
+            <main className={styles.main}>
+                <h1 className={styles.title}>New ingredient</h1>
+                <section className={styles.section}>
                     <AddIngredient />
                 </section>
             </main>

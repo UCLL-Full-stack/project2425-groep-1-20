@@ -7,7 +7,7 @@ import UserService from '@/services/UserService';
 import UserInfo from '@/components/users/UserInfo';
 import useSWR from 'swr';
 import { useTranslation } from 'react-i18next';
-
+import styles from '@/styles/Users.module.css';
 const UserId: React.FC = () => {
     const router = useRouter();
     const { userId } = router.query;
@@ -42,8 +42,8 @@ const UserId: React.FC = () => {
                 <link rel="icon" href="assets/logo.png" />
             </Head>
             <Header />
-            <main>
-                <section>
+            <main className={styles.main}>
+                <section className={styles.section}>
                     {error && <p className="error-field">{error}</p>}
                     {isLoading && <p>Loading...</p>}
                     {data && <UserInfo user={data.user} bestellingen={data.bestellingen} />}

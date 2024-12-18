@@ -9,7 +9,7 @@ import useSWR, { mutate } from "swr";
 import useInterval from "use-interval";
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-
+import styles from '@/styles/Ingredienten.module.css';
 
 const Ingredienten: React.FC = () => {
     const [selectedIngredient, setSelectedIngredient] = useState<Ingredient>();
@@ -47,17 +47,17 @@ const Ingredienten: React.FC = () => {
                 <link rel="icon" href="assets/logo.png" />
             </Head>
             <Header />
-            <main>
-                <h1>Ingredienten</h1>
-                <p>Lijst van alle ingredienten</p>
-                <section>
+            <main className={styles.main}>
+                <h1 className={styles.title}>Ingredienten</h1>
+                <p className={styles.description}>Lijst van alle ingredienten</p>
+                <section className={styles.section}>
                     <>
                         {error && <p className="error-field">{error}</p>}
                         {isLoading && <p>Loading...</p>}
                         {data && (
                             <IngredientenOverzicht ingredienten={data.ingredienten} selectIngredient={setSelectedIngredient} />
                         )}
-                        {!error && (<button onClick={() => { router.push(`/ingredienten/add-ingredient`); }}>Add new ingredient</button>)}
+                        {!error && (<button className={styles.createButton} onClick={() => { router.push(`/ingredienten/add-ingredient`); }}>Add new ingredient</button>)}
                     </>
                 </section>
             </main>

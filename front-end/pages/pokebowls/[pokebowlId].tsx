@@ -8,6 +8,7 @@ import PokebowlInfo from '@/components/pokebowls/PokebowlInfo';
 import useSWR from 'swr';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import styles from '@/styles/Ingredienten.module.css';
 
 
 const PokebowlId: React.FC = () => {
@@ -41,9 +42,9 @@ const PokebowlId: React.FC = () => {
                 <link rel="icon" href="assets/logo.png" />
             </Head>
             <Header />
-            <main>
-                <h1>Pokebowl</h1>
-                <section>
+            <main className={styles.main}>
+                <h1 className={styles.title}>Pokebowl</h1>
+                <section className={styles.section}>
                     {error && <p className="error-field">{error}</p>}
                     {isLoading && <p>Loading pokebowl info...</p>}
                     {data && <PokebowlInfo pokebowl={data.pokebowl} />}

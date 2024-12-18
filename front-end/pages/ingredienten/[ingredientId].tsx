@@ -8,7 +8,7 @@ import IngredientInfo from '@/components/ingredienten/IngredientInfo';
 import useSWR from 'swr';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-
+import styles from '@/styles/Ingredienten.module.css';
 
 const IngredientId: React.FC = () => {
     const router = useRouter();
@@ -36,9 +36,9 @@ const IngredientId: React.FC = () => {
                 <title>Pokebowl info </title>
             </Head>
             <Header />
-            <main>
-                <h1>Ingredient</h1>
-                <section>
+            <main className={styles.main}>
+                <h1 className={styles.title}>Ingredient</h1>
+                <section className={styles.section}>
                     {error && <p className="error-field">{error}</p>}
                     {isLoading && <p>Loading ingredient info...</p>}
                     {data && <IngredientInfo ingredient={data.ingredient} />}

@@ -1,0 +1,127 @@
+.main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+    padding: 2rem;
+    min-height: 100vh;
+    background-color: antiquewhite;
+    box-sizing: border-box;
+}
+
+.title {
+    font-size: 2.5rem;
+    margin-bottom: 0rem;
+    color: #333;
+    text-align: center;
+}
+
+.description {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: #666;
+    text-align: center;
+    width: 100%;
+}
+
+.section{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 1rem;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2rem;
+    width: 100%;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 2rem;
+    max-width: 1200px;
+}
+
+.table th,
+.table td {
+    background-color: #84CE80;
+    color: white;
+    padding: 1rem;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+.table th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.table td:hover {
+    background-color: #4CAF50;
+}
+
+.createButton {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+    margin-top: 1rem;
+    align-self: center;
+}
+
+.createButton:hover {
+    background-color: #45a049;
+}
+
+.ingredientInfo {
+    list-style-type: none;
+    padding: 0%;
+    margin: 0%;
+}
+
+.ingredientInfo li {
+    margin-top: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.ingredientInfo form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 0rem;
+}
+.ingredientInfo input[type='number'] {
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    max-width: 140px;
+}
+
+.ingredientInfo input[type='submit'] {
+    margin-top: 0.5rem 1rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+    align-self: center;
+}
+
+.ingredientInfo input[type='submit']:hover {
+    background-color: #45a049;
+}

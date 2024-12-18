@@ -2,7 +2,7 @@ import UserService from "@/services/UserService";
 import { User } from "@/types";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
-
+import styles from '@/styles/Users.module.css';
 type Props = {
     users: Array<User>;
     selectUser: (user: User) => void;
@@ -87,32 +87,41 @@ const UserOverzicht: React.FC<Props> = ({ users, selectUser }: Props) => {
 
     console.log(users);
     return (
-        <>
-            {statusMessage && <p className="status-message">{statusMessage}</p>}
+        <div className={styles.container}>
+            {statusMessage && <p className={styles.statusMessage}>{statusMessage}</p>}
             {editingUser && (
-                <form className= "edit-form" onSubmit={handleUpdate}>
-                    <label>Adres: </label>    
-                    <input type="text" name="adres" value={String(formData.adres) || ''} onChange={handleChange} />
-                    <label>Email:</label>
-                    <input type="email" name="email" value={String(formData.email) || ''} onChange={handleChange} />
-                    <label>Rol:</label>
-                    <select name="rol" value={formData.rol || ''} onChange={handleChange}>
-                        <option value="Klant">Klant</option>
-                        <option value="Manager">Manager</option>
-                        <option value="Admin">Admin</option>
-                    </select>
-                    <button type="submit">Opslaan</button>
-                    <button type="button" onClick={() => setEditingUser(null)}>Annuleren</button>
+                <form className= {styles.editForm} onSubmit={handleUpdate}>
+                    <div className={styles.formGroup}>
+                        <label>Adres: </label>    
+                        <input type="text" name="adres" value={String(formData.adres) || ''} onChange={handleChange} />
+                    </div>
+                    <div className={styles.formGroup}>
+                        <label>Email:</label>
+                        <input type="email" name="email" value={String(formData.email) || ''} onChange={handleChange} />
+                    </div>
+                    <div className={styles.formGroup}>
+                        <label>Rol:</label>
+                        <select name="rol" value={formData.rol || ''} onChange={handleChange}>
+                            <option value="Klant">Klant</option>
+                            <option value="Manager">Manager</option>
+                            <option value="Admin">Admin</option>
+                        </select>
+                    </div>
+                    <div className={styles.formActions}>
+                        <button type="submit" className={styles.saveButton}>Opslaan</button>
+                        <button type="button" className={styles.cancelButton} onClick={() => setEditingUser(null)}>Annuleren</button>
+                    </div>
                 </form>
             )}
             {userList && (
                 <div className="table-container">
-                    <table>
+                    <table className={styles.table}>
                         <thead>
                             <tr>
                                 <th>Voornaam</th>
                                 <th>Achternaam</th>
                                 <th>Email</th>
+                                <th>Acties</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -123,10 +132,10 @@ const UserOverzicht: React.FC<Props> = ({ users, selectUser }: Props) => {
                                     <td>{user.email}</td>
                                     <td>
                                         <>
-                                            <button type="button" onClick={(e) => { e.stopPropagation(); if (user.id !== undefined) handleDelete(user.id); }}>
-                                                Verwijder
+                                            <button type="button" className={styles.cancelButton} onClick={(e) => { e.stopPropagation(); if (user.id !== undefined) handleDelete(user.id); }}>
+                                                Verwijderen
                                             </button>
-                                            <button onClick={(e) => { e.stopPropagation(); handleEdit(user); }}>
+                                            <button className={styles.saveButton} onClick={(e) => { e.stopPropagation(); handleEdit(user); }}>
                                                 Aanpassen
                                             </button>
                                         </>
@@ -147,7 +156,7 @@ const UserOverzicht: React.FC<Props> = ({ users, selectUser }: Props) => {
                     <p><strong>Rol:</strong> {selectedUser.rol}</p>
                 </div>
             )}
-        </>
+        </div>
     )
 };
 

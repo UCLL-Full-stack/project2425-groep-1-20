@@ -1,6 +1,6 @@
 import { Bestelling, Ingredient } from "@/types"
 import { useRouter } from "next/router";
-
+import styles from '@/styles/Bestellingen.module.css';
 type Props = {
     bestellingen: Array<Bestelling>;
     selectBestelling: (bestelling: Bestelling) => void;
@@ -11,7 +11,7 @@ const BestellingenOverzicht: React.FC<Props> = ({ bestellingen, selectBestelling
     return (
         <>
             {bestellingen && (
-                <table>
+                <table className={styles.table}>
                     <thead>
                         <tr>
                             <th>Order nummer</th>
