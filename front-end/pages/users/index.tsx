@@ -33,11 +33,11 @@ const Users: React.FC = () => {
         mutate("users", getUsers());
     }, 1000);
 
-    useEffect(() => {
-        if (data && data.users) {
-            setSelectedUser(data.users[0]);
-        }
-    }, [data]);
+    // useEffect(() => {
+    //     if (data && data.users) {
+    //         setSelectedUser(data.users[0]);
+    //     }
+    // }, [data]);
 
     return (
         <>
