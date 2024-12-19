@@ -3,4 +3,10 @@ module.exports = {
   transform: {
     '\\.[jt]sx?$': 'esbuild-jest',
   },
+  moduleNameMapper: {
+    '\\.css$': 'identity-obj-proxy'
+  },
+  transformIgnorePatterns: [
+    '/node_modules/',
+  ],
 }
