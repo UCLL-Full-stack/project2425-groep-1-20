@@ -26,14 +26,14 @@ const IngredientId: React.FC = () => {
     }
 
     const { data, isLoading, error } = useSWR(
-        "ingredienten",
+        ingredientId ? `ingredient-${ingredientId}` : null,        
         getIngredientById
     );
 
     return (
         <>
             <Head>
-                <title>Pokebowl info </title>
+                <title>Ingredient info </title>
             </Head>
             <Header />
             <main className={styles.main}>

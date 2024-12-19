@@ -26,7 +26,7 @@ const BestellingId: React.FC = () => {
     }
 
     const { data, isLoading, error } = useSWR(
-        "bestellingen",
+        bestellingId ? `bestelling-${bestellingId}` : null,        
         getBestellingById
     );
 

@@ -36,7 +36,7 @@ const Ingredienten: React.FC = () => {
     useInterval(() => {
         mutate("ingredienten", getIngredienten());
         console.log(data);
-    }, 5000);
+    }, 1000);
 
     return (
         <>

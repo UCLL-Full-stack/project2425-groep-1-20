@@ -28,7 +28,7 @@ const PokebowlId: React.FC = () => {
     }
 
     const { data, isLoading, error } = useSWR(
-        "pokebowls",
+        pokebowlId ? `pokebowl-${pokebowlId}` : null,        
         getPokebowlById
     );
 

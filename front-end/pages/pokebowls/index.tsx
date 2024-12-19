@@ -39,7 +39,7 @@ const Pokebowls: React.FC = () => {
 
     useInterval(() => {
         mutate("pokebowls", getPokebowls());
-    }, 5000);
+    }, 1000);
 
     return (
         <>
