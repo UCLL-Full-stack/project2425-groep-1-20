@@ -11,6 +11,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import styles from '@/styles/Bestellingen.module.css';
 
 const createNewBestelling: React.FC = () => {
+    const [error, setError] = useState<String | null>(null);
     const [loggedInUser, setLoggedInUser] = useState<User | null>(null);
 
 
@@ -27,11 +28,13 @@ const createNewBestelling: React.FC = () => {
                     pokebowlResponses.json(),
                 ]);
                 return { user, pokebowl };
+            } else {
+                setError("Only the customer can create orders");
             }
         }
     }
 
-    const { data, isLoading, error } = useSWR(
+    const { data, isLoading } = useSWR(
         loggedInUser ? "users" : null,
         fetchUserWithBestellingen);
 
@@ -40,6 +43,9 @@ const createNewBestelling: React.FC = () => {
         if (getUser) {
             const parsedUser = JSON.parse(getUser);
             setLoggedInUser(parsedUser as User);
+        }
+        if (loggedInUser && loggedInUser?.rol !== "Klant") {
+            setError("Only the customer can create orders");
         }
     }, []);
 
@@ -57,9 +63,9 @@ const createNewBestelling: React.FC = () => {
             <main className={styles.main}>
                 <h1 className={styles.title}>Bestelling</h1>
                 <section className={styles.section}>
-                    {error && <p className="error-field">{error.message}</p>}
+                    {error && <p className="error-field">{error}</p>}
                     {isLoading && <p>Loading...</p>}
-                    {data?.user && data.pokebowl &&
+                    {!error && data?.user && data.pokebowl &&
                         <BestellingAanmaken user={data.user} pokebowls={data.pokebowl} />
                     }
                 </section>
