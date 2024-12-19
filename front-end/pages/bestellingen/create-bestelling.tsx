@@ -17,17 +17,19 @@ const createNewBestelling: React.FC = () => {
 
     const fetchUserWithBestellingen = async () => {
         if (loggedInUser != undefined) {
-            const [userResponses, pokebowlResponses] = await Promise.all([
-                UserService.getUserById(loggedInUser.id as unknown as string),
-                PokebowlService.getAllPokebowls()
-            ]);
-
-            if (userResponses.ok && pokebowlResponses.ok) {
-                const [user, pokebowl] = await Promise.all([
-                    userResponses.json(),
-                    pokebowlResponses.json(),
+            if (loggedInUser.rol == "Klant") {
+                const [userResponses, pokebowlResponses] = await Promise.all([
+                    UserService.getUserById(loggedInUser.id as unknown as string),
+                    PokebowlService.getAllPokebowls()
                 ]);
-                return { user, pokebowl };
+
+                if (userResponses.ok && pokebowlResponses.ok) {
+                    const [user, pokebowl] = await Promise.all([
+                        userResponses.json(),
+                        pokebowlResponses.json(),
+                    ]);
+                    return { user, pokebowl };
+                }
             } else {
                 setError("Only the customer can create orders");
             }
@@ -43,9 +45,6 @@ const createNewBestelling: React.FC = () => {
         if (getUser) {
             const parsedUser = JSON.parse(getUser);
             setLoggedInUser(parsedUser as User);
-        }
-        if (loggedInUser && loggedInUser?.rol !== "Klant") {
-            setError("Only the customer can create orders");
         }
     }, []);
 
