@@ -31,7 +31,9 @@ const createNewBestelling: React.FC = () => {
         }
     }
 
-    const { data, isLoading, error } = useSWR("users", fetchUserWithBestellingen);
+    const { data, isLoading, error } = useSWR(
+        loggedInUser ? "users" : null,
+        fetchUserWithBestellingen);
 
     useEffect(() => {
         const getUser = sessionStorage.getItem("loggedInUser")
