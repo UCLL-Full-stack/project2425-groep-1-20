@@ -113,7 +113,7 @@ const UserOverzicht: React.FC<Props> = ({ users, selectUser }: Props) => {
                     </div>
                 </form>
             )}
-            {userList && (
+            {users && (
                 <div className="table-container">
                     <table className={styles.table}>
                         <thead>
@@ -125,7 +125,7 @@ const UserOverzicht: React.FC<Props> = ({ users, selectUser }: Props) => {
                             </tr>
                         </thead>
                         <tbody>
-                            {userList.map((user, index) => (
+                            {users.map((user, index) => (
                                 <tr key={index} onClick={() => { handleSelectUser(user); }} role="button">
                                     <td>{user.voornaam}</td>
                                     <td>{user.naam}</td>
