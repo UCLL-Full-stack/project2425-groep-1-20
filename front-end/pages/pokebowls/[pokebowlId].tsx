@@ -12,6 +12,7 @@ import styles from '@/styles/Ingredienten.module.css';
 
 
 const PokebowlId: React.FC = () => {
+    const [error, setError] = useState<String | null>(null);
     const router = useRouter();
     const { pokebowlId } = router.query;
     const { t } = useTranslation();
@@ -24,11 +25,13 @@ const PokebowlId: React.FC = () => {
         if (pokebowlResponses.ok) {
             const pokebowl = await pokebowlResponses.json();
             return { pokebowl }
+        } else {
+            setError("You aren't authorized to view this page");
         }
     }
 
-    const { data, isLoading, error } = useSWR(
-        pokebowlId ? `pokebowl-${pokebowlId}` : null,        
+    const { data, isLoading } = useSWR(
+        pokebowlId ? `pokebowl-${pokebowlId}` : null,
         getPokebowlById
     );
 

@@ -41,7 +41,7 @@ const IngredientInfo: React.FC<Props> = ({ ingredient }: Props) => {
         }
 
         const response = await IngredientenService.updateIngredient(ingredient?.id ?? 0, { naam: ingredient?.naam ?? '', type: ingredient?.type ?? "Topping", aantal: ingredient?.aantal ?? 0, prijs: ingredient?.prijs ?? 0, ingredientLimit: limit });
-        const result = response.json();
+        const result = await response.json();
 
         if (response.status === 200) {
             setStatusMessages([{ message: `Ingredient ${ingredient?.naam} is aangepast`, type: "success" }]);
@@ -49,7 +49,7 @@ const IngredientInfo: React.FC<Props> = ({ ingredient }: Props) => {
                 router.push("/ingredienten");
             }, 2000);
         } else {
-            setStatusMessages([{ message: "Error", type: "error" }])
+            setStatusMessages([{ message: result.message, type: "error" }])
         }
 
 

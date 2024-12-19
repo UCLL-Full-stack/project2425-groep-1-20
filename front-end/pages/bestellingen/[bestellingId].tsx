@@ -11,6 +11,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import styles from '@/styles/Bestellingen.module.css';
 
 const BestellingId: React.FC = () => {
+    const [error, setError] = useState<String | null>(null);
     const router = useRouter();
     const { bestellingId } = router.query;
     const { t } = useTranslation();
@@ -22,18 +23,20 @@ const BestellingId: React.FC = () => {
         if (bestellingResponses.ok) {
             const bestelling = await bestellingResponses.json();
             return { bestelling }
+        } else {
+            setError("You aren't authorized to view this page");
         }
     }
 
-    const { data, isLoading, error } = useSWR(
-        bestellingId ? `bestelling-${bestellingId}` : null,        
+    const { data, isLoading } = useSWR(
+        bestellingId ? `bestelling-${bestellingId}` : null,
         getBestellingById
     );
 
     return (
         <>
             <Head>
-                <title>Pokebowl info </title>
+                <title>Bestelling info </title>
             </Head>
             <Header />
             <main className={styles.main}>

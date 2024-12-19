@@ -11,22 +11,26 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import styles from '@/styles/Ingredienten.module.css';
 
 const IngredientId: React.FC = () => {
+    const [error, setError] = useState<String | null>(null);
     const router = useRouter();
     const { ingredientId } = router.query;
     const { t } = useTranslation();
 
     const getIngredientById = async () => {
+        setError("");
         const responses = await Promise.all([IngredientenService.getIngredientById(ingredientId as string)]);
         const [ingredientResponses] = responses;
 
         if (ingredientResponses.ok) {
             const ingredient = await ingredientResponses.json();
             return { ingredient }
+        } else {
+            setError("You aren't authorized to view this page");
         }
     }
 
-    const { data, isLoading, error } = useSWR(
-        ingredientId ? `ingredient-${ingredientId}` : null,        
+    const { data, isLoading } = useSWR(
+        ingredientId ? `ingredient-${ingredientId}` : null,
         getIngredientById
     );
 
