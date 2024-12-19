@@ -1,6 +1,6 @@
 import React from 'react';
 import { Type } from "@/types";
-import { fireEvent, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import PokebowlInfo from '../components/pokebowls/PokebowlInfo';
 import '@testing-library/jest-dom';
 
