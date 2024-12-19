@@ -5,39 +5,46 @@ import { User } from "../model/user";
 import bestellingDb from "../repository/bestelling.db";
 import { BestellingInput, PokebowlInput, Rol } from "../types";
 import userService from "./user.service";
+import { UnauthorizedError } from "express-jwt";
 
 
-const createBestelling = async ({ user, pokebowls }: BestellingInput): Promise<Bestelling> => {
-    const newUser = new User({ id: user.id, naam: user.naam, voornaam: user.voornaam, email: user.email, wachtwoord: user.wachtwoord, adres: user.adres, gebruikersnaam: user.gebruikersnaam, rol: user.rol })
-    console.log(newUser);
-    const bestelling = new Bestelling({
-        user: newUser,
-        datum: new Date(),
-        pokebowls: []
-    });
-
-    pokebowls.forEach((pokebowl: PokebowlInput) => {
-        const nieuwePokebowl = new Pokebowl({
-            id: pokebowl.id,
-            naam: pokebowl.naam,
-            type: pokebowl.type,
-            beschrijving: pokebowl.beschrijving,
-            prijs: pokebowl.prijs,
-            maxAantalIngredienten: pokebowl.maxAantalIngredienten,
-            ingredienten: []
+const createBestelling = async ({ rol }: { rol: Rol }, { user, pokebowls }: BestellingInput): Promise<Bestelling> => {
+    if (rol === "Klant") {
+        const newUser = new User({ id: user.id, naam: user.naam, voornaam: user.voornaam, email: user.email, wachtwoord: user.wachtwoord, adres: user.adres, gebruikersnaam: user.gebruikersnaam, rol: user.rol })
+        console.log(newUser);
+        const bestelling = new Bestelling({
+            user: newUser,
+            datum: new Date(),
+            pokebowls: []
         });
 
-        for (const ingredientInput of pokebowl.ingredienten) {
-            const ingredient = new Ingredient(ingredientInput);
-            nieuwePokebowl.addIngredient(ingredient);
-        }
+        pokebowls.forEach((pokebowl: PokebowlInput) => {
+            const nieuwePokebowl = new Pokebowl({
+                id: pokebowl.id,
+                naam: pokebowl.naam,
+                type: pokebowl.type,
+                beschrijving: pokebowl.beschrijving,
+                prijs: pokebowl.prijs,
+                maxAantalIngredienten: pokebowl.maxAantalIngredienten,
+                ingredienten: []
+            });
 
-        bestelling.addPokebowl(nieuwePokebowl);
-    })
+            for (const ingredientInput of pokebowl.ingredienten) {
+                const ingredient = new Ingredient(ingredientInput);
+                nieuwePokebowl.addIngredient(ingredient);
+            }
 
-    bestelling.calculateTotaalPrijs();
-    bestellingDb.createBestelling(bestelling);
-    return bestelling;
+            bestelling.addPokebowl(nieuwePokebowl);
+        })
+
+        bestelling.calculateTotaalPrijs();
+        bestellingDb.createBestelling(bestelling);
+        return bestelling;
+    } else {
+        throw new UnauthorizedError("credentials_required", {
+            message: "Only the customer can create orders."
+        });
+    }
 }
 
 const getAllBestellingen = async ({ rol }: { rol: Rol }, { id }: { id: number }): Promise<Bestelling[]> => {

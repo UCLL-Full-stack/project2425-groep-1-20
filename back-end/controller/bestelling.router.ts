@@ -84,8 +84,10 @@ orderRouter.get('/', async (req: Request, res: Response, next: NextFunction) => 
  */
 orderRouter.post('/', async (req: Request, res: Response, next: NextFunction) => {
     try {
+        const request = req as Request & { auth: { rol: Rol, id: number } };
+        const { rol, id } = request.auth;
         const bestelling = <BestellingInput>req.body;
-        const result = await bestellingService.createBestelling(bestelling);
+        const result = await bestellingService.createBestelling({ rol }, bestelling);
         console.log(bestelling);
         res.status(200).json(result);
     } catch (error) {
