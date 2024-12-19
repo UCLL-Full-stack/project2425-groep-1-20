@@ -86,6 +86,7 @@ const AddIngredient: React.FC = () => {
                     <input type="text" name="name" value={naam} onChange={(event) => setNaam(event.target.value)} />
                     <label>Type:</label>
                     <select id="ingredient" name="ingredient" value={type} onChange={(event) => setType(event.target.value as Type)}>
+                        <option>-- Kies een type --</option>
                         <option value="Protein">Protein</option>
                         <option value="Topping">Topping</option>
                         <option value="Sauce">Sauce</option>

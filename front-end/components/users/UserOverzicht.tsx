@@ -37,7 +37,8 @@ const UserOverzicht: React.FC<Props> = ({ users, selectUser }: Props) => {
                 setStatusMessage("Gebruiker verwijderd");
                 setTimeout(() => setStatusMessage(null), 3000);
             } else {
-                console.error("Error deleting user");
+                console.error("User has active orders");
+                setStatusMessage("User has active orders");
             }
         } catch (error) {
             console.error("An error occurred while deleting the user:", error);
