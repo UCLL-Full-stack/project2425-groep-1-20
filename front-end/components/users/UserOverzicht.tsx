@@ -33,7 +33,7 @@ const UserOverzicht: React.FC<Props> = ({ users, selectUser }: Props) => {
         try {
             const response = await UserService.deleteUser(id);
             if (response.ok) {
-                setUserList(userList.filter(user => user.id !== id)); 
+                setUserList(userList.filter(user => user.id !== id));
                 setStatusMessage("Gebruiker verwijderd");
                 setTimeout(() => setStatusMessage(null), 3000);
             } else {
@@ -59,7 +59,7 @@ const UserOverzicht: React.FC<Props> = ({ users, selectUser }: Props) => {
             return;
         }
 
-        try{
+        try {
             const response = await UserService.updateUser(editingUser.id!, formData);
             if (response.ok) {
                 const updatedUser = await response.json();
@@ -90,9 +90,9 @@ const UserOverzicht: React.FC<Props> = ({ users, selectUser }: Props) => {
         <div className={styles.container}>
             {statusMessage && <p className={styles.statusMessage}>{statusMessage}</p>}
             {editingUser && (
-                <form className= {styles.editForm} onSubmit={handleUpdate}>
+                <form className={styles.editForm} onSubmit={handleUpdate}>
                     <div className={styles.formGroup}>
-                        <label>Adres: </label>    
+                        <label>Adres: </label>
                         <input type="text" name="adres" value={String(formData.adres) || ''} onChange={handleChange} />
                     </div>
                     <div className={styles.formGroup}>
@@ -107,13 +107,14 @@ const UserOverzicht: React.FC<Props> = ({ users, selectUser }: Props) => {
                             <option value="Admin">Admin</option>
                         </select>
                     </div>
+
                     <div className={styles.formActions}>
                         <button type="submit" className={styles.saveButton}>Opslaan</button>
                         <button type="button" className={styles.cancelButton} onClick={() => setEditingUser(null)}>Annuleren</button>
                     </div>
                 </form>
             )}
-            {userList && (
+            {users && (
                 <div className="table-container">
                     <table className={styles.table}>
                         <thead>
@@ -121,25 +122,29 @@ const UserOverzicht: React.FC<Props> = ({ users, selectUser }: Props) => {
                                 <th>Voornaam</th>
                                 <th>Achternaam</th>
                                 <th>Email</th>
-                                <th>Acties</th>
+                                {loggedInUser?.rol === "Admin" && (<th>Acties</th>)}
                             </tr>
                         </thead>
                         <tbody>
-                            {userList.map((user, index) => (
+                            {users.map((user, index) => (
                                 <tr key={index} onClick={() => { handleSelectUser(user); }} role="button">
                                     <td>{user.voornaam}</td>
                                     <td>{user.naam}</td>
                                     <td>{user.email}</td>
-                                    <td>
-                                        <>
-                                            <button type="button" className={styles.cancelButton} onClick={(e) => { e.stopPropagation(); if (user.id !== undefined) handleDelete(user.id); }}>
-                                                Verwijderen
-                                            </button>
-                                            <button className={styles.saveButton} onClick={(e) => { e.stopPropagation(); handleEdit(user); }}>
-                                                Aanpassen
-                                            </button>
-                                        </>
-                                    </td>                           
+                                    {loggedInUser?.rol === "Admin" && (
+                                        <td>
+
+                                            <>
+                                                <button type="button" className={styles.cancelButton} onClick={(e) => { e.stopPropagation(); if (user.id !== undefined) handleDelete(user.id); }}>
+                                                    Verwijderen
+                                                </button>
+                                                <button className={styles.saveButton} onClick={(e) => { e.stopPropagation(); handleEdit(user); }}>
+                                                    Aanpassen
+                                                </button>
+                                            </>
+
+                                        </td>
+                                    )}
                                 </tr>
                             ))}
                         </tbody>

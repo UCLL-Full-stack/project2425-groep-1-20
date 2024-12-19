@@ -38,7 +38,7 @@ const Bestellingen: React.FC = () => {
 
     useInterval(() => {
         mutate("bestellingen", getBestellingen());
-    }, 5000);
+    }, 1000);
 
     return (
         <>

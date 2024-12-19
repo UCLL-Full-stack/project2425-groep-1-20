@@ -16,13 +16,11 @@ const Users: React.FC = () => {
     const [selectedUser, setSelectedUser] = useState<User>();
 
     const getUsers = async () => {
-        const response = await Promise.all([
-            UserService.getAllUsers()
-        ]);
-        const [userResponse] = response;
+        setError("");
+        const response = await UserService.getAllUsers();
 
-        if (userResponse.ok) {
-            const users = await userResponse.json();
+        if (response.ok) {
+            const users = await response.json();
             return { users };
         } else {
             setError("You aren't authorized to view this page");
@@ -33,7 +31,13 @@ const Users: React.FC = () => {
 
     useInterval(() => {
         mutate("users", getUsers());
-    }, 5000);
+    }, 1000);
+
+    // useEffect(() => {
+    //     if (data && data.users) {
+    //         setSelectedUser(data.users[0]);
+    //     }
+    // }, [data]);
 
     return (
         <>
@@ -70,4 +74,4 @@ export const getServerSideProps = async (context: { locale: any; }) => {
     };
 };
 
-export default Users
+export default Users;

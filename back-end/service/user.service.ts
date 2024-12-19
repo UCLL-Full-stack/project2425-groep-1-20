@@ -29,7 +29,7 @@ const createUser = async ({ naam, voornaam, email, wachtwoord, adres, gebruikers
 }
 
 const getAllUsers = async ({ rol }: { rol: Rol }): Promise<User[]> => {
-    if (rol === "Admin") {
+    if (rol === "Admin" || rol === "Manager") {
         return userDb.getAllUsers();
     }
     else {

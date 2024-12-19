@@ -30,7 +30,10 @@ const UserId: React.FC = () => {
         }
     }
 
-    const { data, isLoading, error } = useSWR("users", fetchUserWithBestellingen);
+    const { data, isLoading, error } = useSWR(
+        userId ? `user-${userId}` : null,        
+        fetchUserWithBestellingen
+    );
     console.log(data?.user);
 
     return (
