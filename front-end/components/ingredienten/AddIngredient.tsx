@@ -3,6 +3,7 @@ import { StatusMessage, Type } from "@/types";
 import classNames from "classnames";
 import router from "next/router";
 import { FormEvent, useState } from "react";
+import { useTranslation } from 'next-i18next';
 
 const AddIngredient: React.FC = () => {
 
@@ -15,6 +16,7 @@ const AddIngredient: React.FC = () => {
     const [aantalError, setAantalError] = useState<String | null>(null);
     const [prijsError, setPrijsError] = useState<String | null>(null);
     const [statusMessages, setStatusMessages] = useState<StatusMessage[]>([]);
+    const { t } = useTranslation();
 
     const clearErrors = () => {
         setNaamError(null);
@@ -54,7 +56,7 @@ const AddIngredient: React.FC = () => {
         const result = await response.json();
 
         if (response.status === 200) {
-            setStatusMessages([{ message: `Ingredient ${naam} is aangemaakt`, type: "success" }]);
+            setStatusMessages([{ message: `Ingredient ${naam} was added`, type: "success" }]);
             setTimeout(() => {
                 router.push("/ingredienten");
             }, 2000);
@@ -81,7 +83,7 @@ const AddIngredient: React.FC = () => {
                     </div>
                 )}
                 <form onSubmit={handleSubmit}>
-                    <label>Naam:</label>
+                    <label>{t("ingredient.name")}:</label>
                     {naamError && <p className="error-field">{naamError}</p>}
                     <input type="text" name="name" value={naam} onChange={(event) => setNaam(event.target.value)} />
                     <label>Type:</label>
@@ -91,13 +93,13 @@ const AddIngredient: React.FC = () => {
                         <option value="Topping">Topping</option>
                         <option value="Sauce">Sauce</option>
                     </select>
-                    <label>Aantal:</label>
+                    <label>{t("ingredient.stock")}:</label>
                     {aantalError && <p className="error-field">{aantalError}</p>}
                     <input type="number" name="aantal" value={aantal} onChange={(event) => setAantal(event.target.value)} />
-                    <label>Prijs:</label>
+                    <label>{t("ingredient.price")}:</label>
                     {prijsError && <p className="error-field">{prijsError}</p>}
                     <input type="number" name="prijs" value={prijs} onChange={(event) => setPrijs(event.target.value)} />
-                    <input type="submit" value="Add Ingredient" />
+                    <input type="submit" value={t("ingredient.add")} />
                 </form>
             </div>
         </>

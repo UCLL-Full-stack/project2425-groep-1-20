@@ -37,11 +37,11 @@ const IngredientId: React.FC = () => {
     return (
         <>
             <Head>
-                <title>Ingredient info </title>
+                <title>{t("ingredient.ingredient")} info </title>
             </Head>
             <Header />
             <main className={styles.main}>
-                <h1 className={styles.title}>Ingredient</h1>
+                <h1 className={styles.title}>{t("ingredient.ingredient")}</h1>
                 <section className={styles.section}>
                     {error && <p className="error-field">{error}</p>}
                     {isLoading && <p>Loading ingredient info...</p>}

@@ -31,7 +31,7 @@ const UserId: React.FC = () => {
     }
 
     const { data, isLoading, error } = useSWR(
-        userId ? `user-${userId}` : null,        
+        userId ? `user-${userId}` : null,
         fetchUserWithBestellingen
     );
     console.log(data?.user);
@@ -39,7 +39,7 @@ const UserId: React.FC = () => {
     return (
         <>
             <Head>
-                <title>User profiel {data?.user?.gebruikersnaam}</title>
+                <title>{t("user.user")} profiel {data?.user?.gebruikersnaam}</title>
                 <meta name="description" content="BowlBuddies Pokebowl Ingredienten" />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="assets/logo.png" />

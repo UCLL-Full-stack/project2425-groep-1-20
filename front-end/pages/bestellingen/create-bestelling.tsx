@@ -60,7 +60,7 @@ const createNewBestelling: React.FC = () => {
             </Head>
             <Header />
             <main className={styles.main}>
-                <h1 className={styles.title}>Bestelling</h1>
+                <h1 className={styles.title}>{t("order.order")}</h1>
                 <section className={styles.section}>
                     {error && <p className="error-field">{error}</p>}
                     {isLoading && <p>Loading...</p>}

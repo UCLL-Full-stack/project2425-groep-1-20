@@ -1,18 +1,69 @@
 {
-    "app.title": "BowlBuddies",
-    "page.title": "BowlBuddies Pokebowls",
-    "page.description": "Bij BowlBuddies draait alles om heerlijke bowls, gezelligheid en gezond genieten. Van kleurrijke poke bowls tot voedzame smoothie bowls, we hebben iets voor iedereen!\n\nLaat je inspireren door onze verse ingrediënten, ontdek onze zorgvuldig samengestelde favorieten. Of je nu snel iets lekkers wilt bestellen of rustig wilt genieten in ons gezellige restaurant, wij zijn er om jouw eetervaring onvergetelijk te maken.\n\nJouw bowl, jouw keuze, jouw moment!\n\nKijk rond, laat je inspireren, en word ook een echte BowlBuddy!",
-    "header": {
-        "nav": {
-          "home": "Thuis",
-          "orders": "Bestellingen",
-          "order": "Bestelling",
-          "ingredients": "Ingrediënten",
-          "pokebowls": "Pokebowls",
-          "login": "Aanmelden",
-          "logout": "Afmelden",
-          "profile": "Profiel",
-          "language": "Taal"
-        }
+  "app.title": "BowlBuddies",
+  "page.title": "BowlBuddies Pokebowls",
+  "page.description": "Bij BowlBuddies draait alles om heerlijke bowls, gezelligheid en gezond genieten. Van kleurrijke poke bowls tot voedzame smoothie bowls, we hebben iets voor iedereen!\n\nLaat je inspireren door onze verse ingrediënten, ontdek onze zorgvuldig samengestelde favorieten. Of je nu snel iets lekkers wilt bestellen of rustig wilt genieten in ons gezellige restaurant, wij zijn er om jouw eetervaring onvergetelijk te maken.\n\nJouw bowl, jouw keuze, jouw moment!\n\nKijk rond, laat je inspireren, en word ook een echte BowlBuddy!",
+  "header": {
+    "nav": {
+      "home": "Thuis",
+      "orders": "Bestellingen",
+      "order": "Bestelling",
+      "ingredients": "Ingrediënten",
+      "pokebowls": "Pokebowls",
+      "login": "Aanmelden",
+      "logout": "Afmelden",
+      "profile": "Profiel",
+      "language": "Taal"
     }
+  },
+  "ingredient": {
+    "ingredients": "Ingredienten",
+    "ingredient": "Ingredient",
+    "list": "Lijst van alle ingredienten",
+    "name": "Naam",
+    "stock": "Aantal",
+    "price": "Prijs",
+    "limit": "Limiet",
+    "newIngredient": "Maak nieuwe ingredient",
+    "add": "Voeg ingredient toe"
+  },
+  "pokebowl": {
+    "pokebowls": "Pokebowls",
+    "pokebowl": "Pokebowls",
+    "list": "Lijst van alle pokebowls",
+    "name": "Naam",
+    "price": "Prijs",
+    "max": "Maximum aantal ingredienten",
+    "ingredients": "Ingredienten",
+    "create": "Maak nieuwe pokebowl",
+    "add": "Add pokebowl",
+    "description": "Beschrijving"
+  },
+  "order": {
+    "orders": "Bestellingen",
+    "order": "Bestelling",
+    "list": "Lijst van alle bestellingen",
+    "ordernumber": "Ordernummer",
+    "name": "Naam van de klant",
+    "date": "Datum",
+    "total": "Totaal prijs",
+    "create": "Maak nieuwe bestelling",
+    "placeOrder": "Plaats bestelling"
+  },
+  "user": {
+    "users": "Gebruikers",
+    "user": "Gebruiker",
+    "list": "Lijst van alle gebruikers",
+    "firstname": "Voornaam",
+    "lastname": "Achternaam",
+    "address": "Adres",
+    "role": "Rol",
+    "username": "Gebruikersnaam",
+    "password": "Wachtwoord",
+    "register": "Registeren",
+    "login": "Login",
+    "save": "Opslaan",
+    "cancel": "Annuleer",
+    "edit": "Aanpassen",
+    "delete": "Verwijderen"
+  }
 }

@@ -18,7 +18,7 @@ const AddNewIngredient: React.FC = () => {
             </Head>
             <Header />
             <main className={styles.main}>
-                <h1 className={styles.title}>New ingredient</h1>
+                <h1 className={styles.title}>{t("ingredient.ingredient")}</h1>
                 <section className={styles.section}>
                     <AddIngredient />
                 </section>
@@ -29,12 +29,12 @@ const AddNewIngredient: React.FC = () => {
 
 export const getServerSideProps = async (context: { locale: any; }) => {
     const { locale } = context;
-  
+
     return {
         props: {
             ...(await serverSideTranslations(locale ?? "en", ["common"])),
         },
     };
 };
-  
+
 export default AddNewIngredient;

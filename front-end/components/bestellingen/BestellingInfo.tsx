@@ -1,19 +1,21 @@
 import React from 'react';
 import { Bestelling } from '@/types';
+import { useTranslation } from 'next-i18next';
 
 type Props = {
     bestelling: Bestelling | null;
 };
 
 const BestellingInfo: React.FC<Props> = ({ bestelling }: Props) => {
+    const { t } = useTranslation();
     return (
         <>
             {bestelling && (
                 <ul>
-                    <li>Ordernummer: {bestelling.id}</li>
-                    <li>Naam van de klant: {bestelling.user.voornaam + " " + bestelling.user.naam}</li>
-                    <li>Datum: {bestelling.datum ? new Date(bestelling.datum).toLocaleDateString('nl-BE', { day: "numeric", month: "numeric", year: "numeric", hour: "2-digit", minute: "2-digit" }) : 'null'}</li>
-                    <li>Bestelling:</li>
+                    <li>{t("order.ordernumber")}: {bestelling.id}</li>
+                    <li>{t("order.name")}: {bestelling.user.voornaam + " " + bestelling.user.naam}</li>
+                    <li>{t("order.date")}: {bestelling.datum ? new Date(bestelling.datum).toLocaleDateString('nl-BE', { day: "numeric", month: "numeric", year: "numeric", hour: "2-digit", minute: "2-digit" }) : 'null'}</li>
+                    <li>{t("order.orders")}:</li>
                     {
                         bestelling.pokebowls.map((pokebowl) => (
                             <ul key={pokebowl.id}>
@@ -21,7 +23,7 @@ const BestellingInfo: React.FC<Props> = ({ bestelling }: Props) => {
                             </ul>
                         ))
                     }
-                    <li className='totaalPrijs'>Totaal prijs: €{bestelling.totaalPrijs}</li>
+                    <li className='totaalPrijs'>{t("order.total")}: €{bestelling.totaalPrijs}</li>
                 </ul>
             )}
         </>

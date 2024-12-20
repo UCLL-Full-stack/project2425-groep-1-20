@@ -41,7 +41,7 @@ const AddNewPokebowl: React.FC = () => {
             </Head>
             <Header />
             <main>
-                <h1>New Pokebowl</h1>
+                <h1>{t("pokebowl.pokebowl")}</h1>
                 <section>
                     {error && <div className="error-field">{error}</div>}
                     {isLoading && <p className="text-green-800">Loading...</p>}

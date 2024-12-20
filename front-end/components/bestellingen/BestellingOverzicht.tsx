@@ -1,22 +1,23 @@
 import { Bestelling, Ingredient } from "@/types"
 import { useRouter } from "next/router";
 import styles from '@/styles/Bestellingen.module.css';
+import { useTranslation } from 'next-i18next';
 type Props = {
     bestellingen: Array<Bestelling>;
     selectBestelling: (bestelling: Bestelling) => void;
 }
 const BestellingenOverzicht: React.FC<Props> = ({ bestellingen, selectBestelling }: Props) => {
     const router = useRouter();
-    console.log(bestellingen);
+    const { t } = useTranslation();
     return (
         <>
             {bestellingen && (
                 <table className={styles.table}>
                     <thead>
                         <tr>
-                            <th>Order nummer</th>
-                            <th>Naam</th>
-                            <th>Datum</th>
+                            <th>{t("order.ordernumber")}</th>
+                            <th>{t("order.name")}</th>
+                            <th>{t("order.date")}</th>
                         </tr>
                     </thead>
                     <tbody>

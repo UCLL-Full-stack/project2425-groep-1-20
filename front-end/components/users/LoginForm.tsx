@@ -4,6 +4,7 @@ import classNames from "classnames";
 import Link from "next/link";
 import router from "next/router";
 import { FormEvent, useState } from "react";
+import { useTranslation } from 'next-i18next';
 
 const LoginForm: React.FC = () => {
     const [gebruikersnaam, setGebruikersnaam] = useState("");
@@ -11,6 +12,7 @@ const LoginForm: React.FC = () => {
 
     const [loginError, setLoginError] = useState<String | null>(null);
     const [statusMessages, setStatusMessages] = useState<StatusMessage[]>([]);
+    const { t } = useTranslation();
 
     const clearErrors = () => {
         setLoginError(null);
@@ -84,13 +86,13 @@ const LoginForm: React.FC = () => {
                 )}
                 <form onSubmit={(event) => handleSubmit(event)}>
                     {loginError && <p className="error-field">{loginError}</p>}
-                    <label>Username:</label>
+                    <label>{t("user.username")}:</label>
                     <input type="text" name="name" value={gebruikersnaam} onChange={(event) => setGebruikersnaam(event.target.value)} />
-                    <label>Password:</label>
+                    <label>{t("user.password")}:</label>
                     <input type="password" name="password" value={password} onChange={(event) => setPassword(event.target.value)} />
                     <input type="submit" value="Login" />
                 </form>
-                <p>Nog geen account? <Link href="/login/register">Registreer hier</Link></p>
+                <p>Nog geen account? <Link href="/login/register">{t("user.register")}</Link></p>
             </div>
         </>
     );

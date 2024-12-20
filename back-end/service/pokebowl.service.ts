@@ -8,6 +8,14 @@ const getAllPokebowls = async (): Promise<Pokebowl[]> => pokebowlDb.getAllPokebo
 
 const createPokebowl = async ({ rol }: { rol: Rol }, { naam, type, beschrijving, prijs, maxAantalIngredienten, ingredienten }: PokebowlInput): Promise<Pokebowl> => {
     if (rol === "Admin" || rol === "Manager") {
+
+        const newPokebowl = await pokebowlDb.getPokebowlByNaam({ naam: naam });
+
+        if (newPokebowl) {
+            throw new Error(`Pokebowl ${naam} already exists.`);
+        }
+
+
         const pokebowl = new Pokebowl({
             naam: naam,
             type: type,

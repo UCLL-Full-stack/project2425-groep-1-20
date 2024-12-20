@@ -41,15 +41,15 @@ const Ingredienten: React.FC = () => {
     return (
         <>
             <Head>
-                <title>Ingredienten</title>
+                <title>{t("ingredient.ingredients")}</title>
                 <meta name="description" content="BowlBuddies Pokebowl Ingredienten" />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="assets/logo.png" />
             </Head>
             <Header />
             <main className={styles.main}>
-                <h1 className={styles.title}>Ingredienten</h1>
-                <p className={styles.description}>Lijst van alle ingredienten</p>
+                <h1 className={styles.title}>{t("ingredient.ingredients")}</h1>
+                <p className={styles.description}>{t("ingredient.list")}</p>
                 <section className={styles.section}>
                     <>
                         {error && <p className="error-field">{error}</p>}

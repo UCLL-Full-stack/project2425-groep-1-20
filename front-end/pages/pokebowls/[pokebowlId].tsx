@@ -39,14 +39,14 @@ const PokebowlId: React.FC = () => {
     return (
         <>
             <Head>
-                <title>Pokebowl info</title>
+                <title>{t("pokebowl.pokebowl")} info</title>
                 <meta name="description" content="BowlBuddies Pokebowl Ingredienten" />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="assets/logo.png" />
             </Head>
             <Header />
             <main className={styles.main}>
-                <h1 className={styles.title}>Pokebowl</h1>
+                <h1 className={styles.title}>{t("pokebowl.pokebowl")}</h1>
                 <section className={styles.section}>
                     {error && <p className="error-field">{error}</p>}
                     {isLoading && <p>Loading pokebowl info...</p>}

@@ -1,6 +1,7 @@
 import { Ingredient } from "@/types"
 import router from "next/router";
 import styles from '@/styles/Ingredienten.module.css';
+import { useTranslation } from 'next-i18next';
 
 
 type Props = {
@@ -9,6 +10,7 @@ type Props = {
 }
 
 const IngredientenOverzicht: React.FC<Props> = ({ ingredienten, selectIngredient }: Props) => {
+    const { t } = useTranslation();
     return (
         <>
             {ingredienten && (
@@ -16,11 +18,11 @@ const IngredientenOverzicht: React.FC<Props> = ({ ingredienten, selectIngredient
                     <thead>
                         <tr>
                             <th>Id</th>
-                            <th>Naam</th>
+                            <th>{t("ingredient.name")}</th>
                             <th>Type</th>
-                            <th>Aantal</th>
-                            <th>Prijs</th>
-                            <th>Limit</th>
+                            <th>{t("ingredient.stock")}</th>
+                            <th>{t("ingredient.price")}</th>
+                            <th>{t("ingredient.limit")}</th>
                         </tr>
                     </thead>
                     <tbody>
