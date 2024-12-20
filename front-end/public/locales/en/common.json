@@ -1,18 +1,69 @@
 {
-    "app.title": "BowlBuddies",
-    "page.title": "BowlBuddies Pokebowls",
-    "page.description": "At BowlBuddies, it's all about delicious bowls, togetherness, and healthy enjoyment. From colorful poke bowls to nutritious smoothie bowls, we have something for everyone!\n\n Get inspired by our fresh ingredients, discover our carefully curated favorites. Whether you're looking to quickly order something tasty or take your time to enjoy a meal in our cozy restaurant, we're here to make your dining experience unforgettable.\n\nYour bowl, your choice, your moment!\n\nTake a look around, get inspired, and become a true BowlBuddy too!",
-    "header": {
-        "nav": {
-          "home": "Home",
-          "orders": "Orders",
-          "order": "Order",
-          "ingredients": "Ingredients",
-          "pokebowls": "Pokebowls",
-          "login": "Login",
-          "logout": "Logout",
-          "profile": "Profile",
-          "language": "Language"
-        }
+  "app.title": "BowlBuddies",
+  "page.title": "BowlBuddies Pokebowls",
+  "page.description": "At BowlBuddies, it's all about delicious bowls, togetherness, and healthy enjoyment. From colorful poke bowls to nutritious smoothie bowls, we have something for everyone!\n\n Get inspired by our fresh ingredients, discover our carefully curated favorites. Whether you're looking to quickly order something tasty or take your time to enjoy a meal in our cozy restaurant, we're here to make your dining experience unforgettable.\n\nYour bowl, your choice, your moment!\n\nTake a look around, get inspired, and become a true BowlBuddy too!",
+  "header": {
+    "nav": {
+      "home": "Home",
+      "orders": "Orders",
+      "order": "Order",
+      "ingredients": "Ingredients",
+      "pokebowls": "Pokebowls",
+      "login": "Login",
+      "logout": "Logout",
+      "profile": "Profile",
+      "language": "Language"
     }
+  },
+  "ingredient": {
+    "ingredients": "Ingredients",
+    "ingredient": "Ingredient",
+    "list": "List of all ingredients",
+    "name": "Name",
+    "stock": "Stock",
+    "price": "Price",
+    "limit": "Limit",
+    "newIngredient": "Add new ingredient",
+    "add": "Add ingredient"
+  },
+  "pokebowl": {
+    "pokebowls": "Pokebowls",
+    "pokebowl": "Pokebowls",
+    "list": "List of all pokebowls",
+    "name": "Name",
+    "price": "Price",
+    "max": "Maximum amount of ingredients",
+    "ingredients": "Ingredients",
+    "create": "Create new pokebowl",
+    "add": "Add pokebowl",
+    "description": "Description"
+  },
+  "order": {
+    "orders": "Orders",
+    "order": "Order",
+    "list": "List of all orders",
+    "ordernumber": "Ordernumber",
+    "name": "Name of customer",
+    "date": "Date",
+    "total": "Total price",
+    "create": "Create new order",
+    "placeOrder": "Place order"
+  },
+  "user": {
+    "users": "Users",
+    "user": "User",
+    "list": "List of all users",
+    "firstname": "Firstname",
+    "lastname": "Lastname",
+    "address": "Address",
+    "role": "Role",
+    "username": "Username",
+    "password": "Password",
+    "register": "Register",
+    "login": "Login",
+    "save": "Save",
+    "cancel": "Cancel",
+    "edit": "Edit",
+    "delete": "Delete"
   }
+}

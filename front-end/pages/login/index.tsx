@@ -11,7 +11,7 @@ const Login: React.FC = () => {
     return (
         <>
             <Head>
-                <title>Login</title>
+                <title>{t("user.login")}</title>
                 <meta name="description" content="BowlBuddies Pokebowl Ingredienten" />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="assets/logo.png" />
@@ -31,13 +31,13 @@ const Login: React.FC = () => {
 
 export const getServerSideProps = async (context: { locale: any; }) => {
     const { locale } = context;
-  
+
     return {
         props: {
             ...(await serverSideTranslations(locale ?? "en", ["common"])),
         },
     };
 };
-  
+
 
 export default Login;

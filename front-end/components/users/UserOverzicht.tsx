@@ -3,6 +3,8 @@ import { User } from "@/types";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import styles from '@/styles/Users.module.css';
+import { useTranslation } from 'next-i18next';
+
 type Props = {
     users: Array<User>;
     selectUser: (user: User) => void;
@@ -16,6 +18,7 @@ const UserOverzicht: React.FC<Props> = ({ users, selectUser }: Props) => {
     const [formData, setFormData] = useState<Partial<User>>({});
     const [selectedUser, setSelectedUser] = useState<User | null>(null);
     const router = useRouter();
+    const { t } = useTranslation();
 
     useEffect(() => {
         const user = sessionStorage.getItem('loggedInUser');
@@ -93,7 +96,7 @@ const UserOverzicht: React.FC<Props> = ({ users, selectUser }: Props) => {
             {editingUser && (
                 <form className={styles.editForm} onSubmit={handleUpdate}>
                     <div className={styles.formGroup}>
-                        <label>Adres: </label>
+                        <label>{t("user.address")}: </label>
                         <input type="text" name="adres" value={String(formData.adres) || ''} onChange={handleChange} />
                     </div>
                     <div className={styles.formGroup}>
@@ -101,7 +104,7 @@ const UserOverzicht: React.FC<Props> = ({ users, selectUser }: Props) => {
                         <input type="email" name="email" value={String(formData.email) || ''} onChange={handleChange} />
                     </div>
                     <div className={styles.formGroup}>
-                        <label>Rol:</label>
+                        <label>{t("user.role")}:</label>
                         <select name="rol" value={formData.rol || ''} onChange={handleChange}>
                             <option value="Klant">Klant</option>
                             <option value="Manager">Manager</option>
@@ -110,8 +113,8 @@ const UserOverzicht: React.FC<Props> = ({ users, selectUser }: Props) => {
                     </div>
 
                     <div className={styles.formActions}>
-                        <button type="submit" className={styles.saveButton}>Opslaan</button>
-                        <button type="button" className={styles.cancelButton} onClick={() => setEditingUser(null)}>Annuleren</button>
+                        <button type="submit" className={styles.saveButton}>{t("user.save")}</button>
+                        <button type="button" className={styles.cancelButton} onClick={() => setEditingUser(null)}>{t("user.cancel")}</button>
                     </div>
                 </form>
             )}
@@ -120,8 +123,8 @@ const UserOverzicht: React.FC<Props> = ({ users, selectUser }: Props) => {
                     <table className={styles.table}>
                         <thead>
                             <tr>
-                                <th>Voornaam</th>
-                                <th>Achternaam</th>
+                                <th>{t("user.firstname")}</th>
+                                <th>{t("user.lastname")}</th>
                                 <th>Email</th>
                                 {loggedInUser?.rol === "Admin" && (<th>Acties</th>)}
                             </tr>
@@ -137,10 +140,10 @@ const UserOverzicht: React.FC<Props> = ({ users, selectUser }: Props) => {
 
                                             <>
                                                 <button type="button" className={styles.cancelButton} onClick={(e) => { e.stopPropagation(); if (user.id !== undefined) handleDelete(user.id); }}>
-                                                    Verwijderen
+                                                    {t("user.delete")}
                                                 </button>
                                                 <button className={styles.saveButton} onClick={(e) => { e.stopPropagation(); handleEdit(user); }}>
-                                                    Aanpassen
+                                                    {t("user.edit")}
                                                 </button>
                                             </>
 
@@ -154,12 +157,12 @@ const UserOverzicht: React.FC<Props> = ({ users, selectUser }: Props) => {
             )}
             {selectedUser && (
                 <div className="user-details">
-                    <h2>Gebruikersdetails</h2>
-                    <p><strong>Voornaam:</strong> {selectedUser.voornaam}</p>
-                    <p><strong>Achternaam:</strong> {selectedUser.naam}</p>
+                    <h2>Details</h2>
+                    <p><strong>{t("user.firstname")}:</strong> {selectedUser.voornaam}</p>
+                    <p><strong>{t("user.lastname")}:</strong> {selectedUser.naam}</p>
                     <p><strong>Email:</strong> {selectedUser.email}</p>
-                    <p><strong>Adres:</strong> {selectedUser.adres}</p>
-                    <p><strong>Rol:</strong> {selectedUser.rol}</p>
+                    <p><strong>{t("user.address")}:</strong> {selectedUser.adres}</p>
+                    <p><strong>{t("user.role")}:</strong> {selectedUser.rol}</p>
                 </div>
             )}
         </div>

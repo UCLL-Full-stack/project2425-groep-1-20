@@ -33,24 +33,18 @@ const Users: React.FC = () => {
         mutate("users", getUsers());
     }, 1000);
 
-    // useEffect(() => {
-    //     if (data && data.users) {
-    //         setSelectedUser(data.users[0]);
-    //     }
-    // }, [data]);
-
     return (
         <>
             <Head>
-                <title>Users</title>
+                <title>{t("user.users")}</title>
                 <meta name="description" content="BowlBuddies Pokebowl Users" />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="assets/logo.png" />
             </Head>
             <Header />
             <main className={styles.main}>
-                <h1 className={styles.title}>Users</h1>
-                <p className={styles.description}>Lijst van alle gebruikers</p>
+                <h1 className={styles.title}>{t("user.users")}</h1>
+                <p className={styles.description}>{t("user.list")}</p>
                 <section className={styles.section}>
                     {error && <p className="error-field">{error}</p>}
                     {isLoading && <p className="text-green-800">Loading...</p>}

@@ -3,6 +3,7 @@ import { StatusMessage } from "@/types";
 import classNames from "classnames";
 import router from "next/router";
 import { useState } from "react";
+import { useTranslation } from 'next-i18next';
 
 const RegisterForm: React.FC = () => {
     const [naam, setNaam] = useState("");
@@ -13,6 +14,7 @@ const RegisterForm: React.FC = () => {
     const [password, setPassword] = useState("");
     const [passwordRepeat, setPasswordRepeat] = useState("");
     const [statusMessages, setStatusMessages] = useState<StatusMessage[]>([]);
+    const { t } = useTranslation();
 
     const clearErrors = () => {
         setStatusMessages([]);
@@ -106,21 +108,21 @@ const RegisterForm: React.FC = () => {
                     </div>
                 )}
                 <form onSubmit={handleSubmit}>
-                    <label>Naam:</label>
+                    <label>{t("user.lastname")}:</label>
                     <input type="text" name="naam" value={naam} onChange={(event) => setNaam(event.target.value)} />
-                    <label>Voornaam:</label>
+                    <label>{t("user.firstname")}:</label>
                     <input type="text" name="voornaam" value={voornaam} onChange={(event) => setVoornaam(event.target.value)} />
-                    <label>Adres:</label>
+                    <label>{t("user.address")}:</label>
                     <input type="text" name="adres" value={adres} onChange={(event) => setAdres(event.target.value)} />
                     <label>Email:</label>
                     <input type="email" name="email" value={email} onChange={(event) => setEmail(event.target.value)} />
-                    <label>Gebruikersnaam:</label>
+                    <label>{t("user.username")}:</label>
                     <input type="text" name="gebruikersnaam" value={gebruikersnaam} onChange={(event) => setGebruikersnaam(event.target.value)} />
-                    <label>Wachtwoord:</label>
+                    <label>{t("user.password")}:</label>
                     <input type="password" name="password" value={password} onChange={(event) => setPassword(event.target.value)} />
-                    <label>Herhaal wachtwoord:</label>
+                    <label>Herhaal {t("user.password")}:</label>
                     <input type="password" name="passwordRepeat" value={passwordRepeat} onChange={(event) => setPasswordRepeat(event.target.value)} />
-                    <input type="submit" value="Register" />
+                    <input type="submit" value={t("user.register")} />
                 </form>
             </div>
         </>

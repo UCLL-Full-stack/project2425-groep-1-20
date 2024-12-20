@@ -4,6 +4,7 @@ import { Ingredient, Pokebowl, StatusMessage } from "@/types";
 import classNames from "classnames";
 import router from "next/router";
 import { ChangeEvent, FormEvent, useState } from "react";
+import { useTranslation } from 'next-i18next';
 
 type Props = {
     ingredienten: Array<Ingredient>;
@@ -23,6 +24,7 @@ const PokebowlAanmaken: React.FC<Props> = ({ ingredienten }: Props) => {
     const [beschrijvingError, setBeschrijvingError] = useState<String | null>(null);
     const [maxAantalIngredientenError, setMaxAantalIngredientenError] = useState<String | null>(null);
     const [statusMessages, setStatusMessages] = useState<StatusMessage[]>([]);
+    const { t } = useTranslation();
 
     const clearErrors = () => {
         setNaamError(null);
@@ -115,21 +117,21 @@ const PokebowlAanmaken: React.FC<Props> = ({ ingredienten }: Props) => {
                     </div>
                 )}
                 <form onSubmit={handleSubmit}>
-                    <label>Pokebowl naam:</label>
+                    <label>Pokebowl {t("pokebowl.name")}:</label>
                     {naamError && <p className="error-field">{naamError}</p>}
                     <input type="text" name="name" value={naam} onChange={(event) => setNaam(event.target.value)} />
                     <label>Pokebowl type:</label>
                     {typeError && <p className="error-field">{typeError}</p>}
                     <input type="text" name="type" value={type} onChange={(event) => setType(event.target.value)} />
-                    <label>Pokebowl beschrijving:</label>
+                    <label>Pokebowl {t("pokebowl.description")}:</label>
                     {beschrijvingError && <p className="error-field">{beschrijvingError}</p>}
                     <input type="text" name="beschrijving" value={beschrijving} onChange={(event) => setBeschrijving(event.target.value)} />
-                    <label>Max aantal ingredienten:</label>
+                    <label>{t("pokebowl.max")}:</label>
                     {maxAantalIngredientenError && <p className="error-field">{maxAantalIngredientenError}</p>}
                     <input type="number" name="maxAantalIngredienten" value={maxAantalIngredienten} onChange={(event) => setMaxAantalIngredienten(event.target.value)} />
-                    <label>Prijs:</label>
+                    <label>{t("pokebowl.price")}:</label>
                     <input type="number" name="prijs" value={prijs} onChange={handlePrijs} />
-                    <label>Pokebowl ingredienten</label>
+                    <label>Pokebowl {t("pokebowl.ingredients")}</label>
                     {ingredienten && ingredienten.map((ingr) => (
                         <div key={ingr.id}>
                             {ingr.aantal != 0 && (

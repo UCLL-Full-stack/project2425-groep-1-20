@@ -4,6 +4,7 @@ import IngredientenService from '@/services/IngredientService';
 import router from 'next/router';
 import classNames from 'classnames';
 import styles from '@/styles/Ingredienten.module.css';
+import { useTranslation } from 'next-i18next';
 
 
 type Props = {
@@ -14,6 +15,7 @@ const IngredientInfo: React.FC<Props> = ({ ingredient }: Props) => {
     const [limit, setLimit] = useState<number>(ingredient?.ingredientLimit as number);
     const [aantalError, setAantalError] = useState<String | null>(null);
     const [statusMessages, setStatusMessages] = useState<StatusMessage[]>([]);
+    const { t } = useTranslation();
 
     const clearErrors = () => {
         setAantalError(null);
@@ -72,13 +74,13 @@ const IngredientInfo: React.FC<Props> = ({ ingredient }: Props) => {
             {ingredient && (
                 <ul className={styles.ingredientInfo}>
                     <li>ID: {ingredient.id}</li>
-                    <li>Naam: {ingredient.naam}</li>
+                    <li>{t("ingredient.name")}: {ingredient.naam}</li>
                     <li>Type: {ingredient.type}</li>
-                    <li>Aantal: {ingredient.aantal}</li>
-                    <li>Prijs: {ingredient.prijs}</li>
+                    <li>{t("ingredient.stock")}: {ingredient.aantal}</li>
+                    <li>{t("ingredient.price")}: {ingredient.prijs}</li>
                     <form onSubmit={handleSubmit}>
                         {aantalError && <p className="error-field">{aantalError}</p>}
-                        <li>Ingredienten limit:</li>
+                        <li>Ingredient {t("ingredient.limit")}:</li>
                         <input type='number' placeholder={ingredient.ingredientLimit?.toString()} value={limit} onChange={(event) => setLimit(parseInt(event.target.value))} />
                         <input type='submit' value="Update aantal" />
                     </form>

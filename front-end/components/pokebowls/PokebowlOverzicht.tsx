@@ -1,6 +1,7 @@
 import { Pokebowl } from "@/types"
 import { useRouter } from "next/router";
 import styles from '@/styles/Pokebowls.module.css';
+import { useTranslation } from 'next-i18next';
 
 type Props = {
     pokebowls: Array<Pokebowl>
@@ -9,7 +10,7 @@ type Props = {
 
 const PokebowlOverzicht: React.FC<Props> = ({ pokebowls, selectPokebowl }: Props) => {
     const router = useRouter();
-    
+    const { t } = useTranslation();
     return (
         <>
             {pokebowls && (
@@ -18,7 +19,7 @@ const PokebowlOverzicht: React.FC<Props> = ({ pokebowls, selectPokebowl }: Props
                     <tbody>
                         {pokebowls.map((pokebowl, index) => (
                             <tr key={index} onClick={() => { router.push(`/pokebowls/${pokebowl.id}`); selectPokebowl(pokebowl) }} role="button">
-                                <td><img src="/assets/salmon-pokebowl.png" alt={pokebowl.naam} className={styles.pokebowlImage}/></td>
+                                <td><img src="/assets/salmon-pokebowl.png" alt={pokebowl.naam} className={styles.pokebowlImage} /></td>
                                 <td>{pokebowl.naam}</td>
                                 <td>{pokebowl.prijs}</td>
                             </tr>

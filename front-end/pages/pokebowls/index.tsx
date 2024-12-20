@@ -44,15 +44,15 @@ const Pokebowls: React.FC = () => {
     return (
         <>
             <Head>
-                <title>Pokebowls</title>
+                <title>{t("pokebowl.pokebowls")}</title>
                 <meta name="description" content="BowlBuddies Pokebowl Ingredienten" />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="assets/logo.png" />
             </Head>
             <Header />
             <main className={styles.main}>
-                <h1 className={styles.title}>Pokebowls</h1>
-                <p className={styles.description}>Lijst van alle pokebowls</p>
+                <h1 className={styles.title}>{t("pokebowl.pokebowls")}</h1>
+                <p className={styles.description}>{t("pokebowl.list")}</p>
                 <section className={styles.description}>
                     {error && <div className="error-field">{error}</div>}
                     {isLoading && <p className="text-green-800">Loading...</p>}

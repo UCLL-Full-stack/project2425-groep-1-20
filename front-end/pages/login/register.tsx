@@ -11,8 +11,8 @@ const Register: React.FC = () => {
     return (
         <>
             <Head>
-                <title>Register</title>
-                <meta name="description" content="BowlBuddies Pokebowl Ingredienten" />
+                <title>{t("user.register")}</title>
+                <meta name="description" content="BowlBuddies Pokebowl Register" />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="assets/logo.png" />
             </Head>
@@ -22,7 +22,7 @@ const Register: React.FC = () => {
                     <RegisterForm />
                 </section>
             </main>
-        </> 
+        </>
     )
 };
 

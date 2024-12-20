@@ -4,6 +4,8 @@ import classNames from "classnames";
 import router from "next/router";
 import { FormEvent, useState } from "react";
 import styles from '@/styles/Bestellingen.module.css';
+import { useTranslation } from 'next-i18next';
+
 type Props = {
     user: User;
     pokebowls: Array<Pokebowl>;
@@ -15,6 +17,7 @@ const BestellingAanmaken: React.FC<Props> = ({ user: user, pokebowls: pokebowls 
     const [totaalPrijs, setTotaalPrijs] = useState<number>();
     const [selectedPokebowls, setSelectedPokebowls] = useState<Array<Pokebowl>>([]);
     const [statusMessages, setStatusMessages] = useState<StatusMessage[]>([]);
+    const { t } = useTranslation();
 
     const clearErrors = () => {
         setStatusMessages([]);
@@ -67,14 +70,14 @@ const BestellingAanmaken: React.FC<Props> = ({ user: user, pokebowls: pokebowls 
 
 
     };
-    
+
     return (
         <>
             {statusMessages.length > 0 && (
                 <div className={styles.statusMessages}>
                     {statusMessages.map(({ message, type }, index) => (
-                        <p 
-                            key={index} 
+                        <p
+                            key={index}
                             className={classNames(styles.statusMessage, {
                                 [styles.errorField]: type === "error",
                                 [styles.successField]: type === "success",
@@ -88,11 +91,11 @@ const BestellingAanmaken: React.FC<Props> = ({ user: user, pokebowls: pokebowls 
             <form onSubmit={handleSubmit} className={styles.form}>
                 <p className={styles.userName}>{user.gebruikersnaam}</p>
                 <div className={styles.formGroup}>
-                    <label htmlFor="pokebowls">Pokebowls</label>
+                    <label htmlFor="pokebowls">{t("pokebowl.pokebowls")}</label>
                     <table className={styles.table}>
                         <thead>
                             <tr>
-                                <th>Naam</th>
+                                <th>{t("pokebowl.name")}</th>
                                 <th>Actie</th>
                             </tr>
                         </thead>
@@ -101,13 +104,13 @@ const BestellingAanmaken: React.FC<Props> = ({ user: user, pokebowls: pokebowls 
                                 <tr key={pokebowl.id}>
                                     <td>{pokebowl.naam}</td>
                                     <td>
-                                        <button 
-                                            type="button" 
-                                            value={pokebowl.id} 
+                                        <button
+                                            type="button"
+                                            value={pokebowl.id}
                                             onClick={handlePokebowls}
                                             className={styles.addButton}
                                         >
-                                            Toevoegen
+                                            {t("pokebowl.add")}
                                         </button>
                                     </td>
                                 </tr>
@@ -115,9 +118,9 @@ const BestellingAanmaken: React.FC<Props> = ({ user: user, pokebowls: pokebowls 
                         </tbody>
                     </table>
                 </div>
-                <p className={styles.totalPrice}>Totaal prijs: {totaalPrijs?.toFixed(2) || 0}</p>
+                <p className={styles.totalPrice}>{t("order.total")}: {totaalPrijs?.toFixed(2) || 0}</p>
                 <div className={styles.formGroup}>
-                    <label htmlFor="selectedPokebowls">Bestelling:</label>
+                    <label htmlFor="selectedPokebowls">{t("order:order")}:</label>
                     <table className={styles.table}>
                         <tbody>
                             {selectedPokebowls && selectedPokebowls.map((pokebowl) => (
@@ -128,14 +131,14 @@ const BestellingAanmaken: React.FC<Props> = ({ user: user, pokebowls: pokebowls 
                         </tbody>
                     </table>
                 </div>
-                <input 
-                    type="submit" 
-                    value="Bestelling plaatsen" 
-                    className={styles.submitButton} 
+                <input
+                    type="submit"
+                    value={t("order.placeOrder")}
+                    className={styles.submitButton}
                 />
             </form>
         </>
-    ); 
+    );
 };
 
 

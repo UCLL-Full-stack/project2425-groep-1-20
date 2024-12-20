@@ -43,15 +43,15 @@ const Bestellingen: React.FC = () => {
     return (
         <>
             <Head>
-                <title>Bestellingen</title>
+                <title>{t("order.orders")}</title>
                 <meta name="description" content="BowlBuddies Pokebowl BEstellingen" />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="assets/logo.png" />
             </Head>
             <Header />
             <main className={styles.main}>
-                <h1 className={styles.title}>Bestellingen</h1>
-                <p className={styles.description}>Lijst van alle bestellingen</p>
+                <h1 className={styles.title}>{t("order.orders")}</h1>
+                <p className={styles.description}>{t("order.list")}</p>
                 <section className={styles.section}>
                     {error && <p className="error-field">{error}</p>}
                     {isLoading && <p>Loading...</p>}
